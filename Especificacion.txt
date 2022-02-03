@@ -1,0 +1,117 @@
+Abs TAD Vacuna
+	-Nombre	| IREP: Pfizer, Sputnik, Sinopharm, Moderna, Astrazeneca
+	-Temperatura | IREP: -18 o 3
+	-Fecha Ingreso
+	
+	Acciones:
+		Publico:
+			-Saber si estara vencidad para determinada fecha
+			-Saber si esta vencida
+
+TAD Fecha
+	-Dia	| IREP: 31 >= dia >= 1
+	-Mes	| IREP: 12 >= mes >= 1
+	-Anio	| IREP: 9999 >= año >= 1
+	
+	Acciones:
+		Publico:
+			-Avanzar una cantidad de dias determinados
+
+TAD	Persona:
+	-Dni	| IREP: 8 >= dni >= 6 digitos
+	-Nacimineto	| IREP: edad >= 18
+	-Tiene enfermedades
+	-Trabaja en salud
+	
+	Acciones:
+		Publico:
+			-Saber el DNI
+			-Saber la Edad
+			-Saber si tiene enfermedades
+			-Saber si trabaja en salud			
+
+TAD	Turno:
+	-Persona
+	-Fecha
+	-Vacuna
+	
+	Acciones:
+		Publico:
+			-Saber la Persona
+			-Saber la Vacuna
+			-Saber la Fecha
+			-Saber si estara vencido para determinada fecha
+			-Saber si esta vencido
+			
+TAD Sistema:
+	-nombreCentro <String>	| IREP: != null
+	-capacidadVacunacionDiaria <int>	| IREP: > 0
+	-vacunasDisponibles	<HashMap>(Vacuna, Integer) | IREP: 	Integer > 0 
+															longitud del la lista debe ser > 0
+
+	-vacunasVencidas <HashMap>(String, Integer)	| IREP: Integer >= 0
+														String debe cumplir el irep del atributo Nombre del TAD Vacuna
+														longitud del la lista debe ser > 0
+														
+	-listaInscriptos <HashSet>(Persona)	| IREP: != null
+												longitud del la lista debe ser > 0
+												Persona no debe estar contenida en turnosAsignados.Turno
+												Persona.dni no debe estar contenido en turnosAsignados.Integer
+												Persona.dni no debe estar contenido en vacunasAplicadas.Integer
+												
+	-vacunasAplicadas <HashMap>(Integer, String)	|	IREP:	longitud del la lista debe ser > 0
+																Integer debe cumplir el irep del atributo Dni del TAD Persona
+																Integer no debe estar contenido en listaInscriptos.Persona.dni
+																Integer no debe estar contenido en el conjunto de claves de turnosAsignados
+																String debe cumplir el irep del atributo Nombre del TAD Vacuna
+																
+	-turnosAsignados <HashMap>(Integer, Turno)	|	IREP: 	Turno.Vacuna debe estar contenida en vacunasDisponibles
+															Turno.Persona no debe estar contenida en listaInscriptos
+															Integer debe cumplir el irep del atributo Dni del TAD Persona
+															cada Turno debe ser unico
+	Acciones:
+		Publico:
+			-ingresarVacunas(nombreVacuna, cantidad, fechaIngreso)
+			-vacunasDisponibles()
+			-vacunasDisponibles(nombreVacuna)
+			-inscribirPersona(dni, nacimiento, tienePadecimientos, esEmpleadoSalud)
+			-listaDeEspera()
+			-generarTurnos(fechaInicial)
+			-turnosConFecha(fecha) 
+			-vacunarInscripto(dni, fechaVacunacion)
+			-reporteVacunacion()
+			-reporteVacunasVencidas()
+			
+		Privado:
+			-crearVacuna
+			-agregarVacunasAlStock
+			-sumarCantVacunas
+			-eliminarVacunasVencidas
+			-actualizarReporteVacunasVencidas
+			-estaInscripto
+			-tieneTurno
+			-estaVacunada
+			-agregarAListaInscriptos
+			-eliminarTurnosPerdidos
+			-listaEsperaOrdenada
+			-obtenerVacuna
+			-obtenerVacunaMayores
+			-restarCantVacunas
+			-obtenerVacunaTodoPublico
+			-registrarTurno
+			-turnoFechaIgualFecha
+
+INTERFAZ:
+public class CentroVacunacion {
+	public CentroVacunacion(String nombreCentro, int capacidadVacunacionDiaria);
+	public void ingresarVacunas(String nombreVacuna, int cantidad, Fecha fechaIngreso);
+	public int vacunasDisponibles();
+	public int vacunasDisponibles(String nombreVacuna);
+	public void inscribirPersona(int dni, Fecha nacimiento, boolean tienePadecimientos, boolean esEmpleadoSalud);
+	public List<Integer> listaDeEspera();
+	public void generarTurnos(Fecha fechaInicial);
+	public List<Integer> turnosConFecha(Fecha fecha);
+	public void vacunarInscripto(int dni, Fecha fechaVacunacion);
+	public Map<Integer, String> reporteVacunacion();
+	public Map<String, Integer> reporteVacunasVencidas();
+}
