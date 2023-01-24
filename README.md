@@ -7,4 +7,4 @@ Desarrollo de una aplicación que simula la gestión de vacunas, turnos de vacun
 
 #### ACLARACIONES
 1) Algunas funciones tienen explicacion dentro del codigo
-2) Descargar el repositorio e iniciar el archivo main en algun IDE de Java
+2) Descargar el repositorio e iniciar el archivo Principal.java en algun IDE de Java
