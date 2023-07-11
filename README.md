@@ -9,6 +9,6 @@ Para mas informacion leer los archivos Enunciado Primera Parte.pdf y Enunciado S
 #### ACLARACIONES
 1) Algunas funciones tienen explicacion dentro del codigo
 2) Se utlizo el JDK 17.0.7 (javac -version) y JUnit 4
-3) Descargar el repositorio y ejecutar el archivo Principal.java
+3) Descargar el repositorio y ejecutar el archivo Principal.java en algun IDE de Java para mayor facilidad
 
 [VIDEO DEMO](https://youtu.be/tEkRWqVFCyE)
