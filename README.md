@@ -8,4 +8,5 @@ Para mas informacion leer los archivos Enunciado Primera Parte.pdf y Enunciado S
 
 #### ACLARACIONES
 1) Algunas funciones tienen explicacion dentro del codigo
-2) Descargar el repositorio y ejecutar el archivo Principal.java
+2) Se utlizo el JDK 17.0.7 (javac -version)
+3) Descargar el repositorio y ejecutar el archivo Principal.java
