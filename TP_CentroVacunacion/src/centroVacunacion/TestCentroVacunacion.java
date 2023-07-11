@@ -54,6 +54,7 @@ public class TestCentroVacunacion {
 		Fecha fechaSiguiente = new Fecha(3, 7, 2021);
 		Fecha fechaAnteriorSinTurnos = new Fecha(1, 7, 2021);
 		Fecha fechaPosteriorSinTurnos = new Fecha(4, 7, 2021);
+		Fecha.setFechaHoy(15,6,2021);
 
 		assertEquals(8, centro.listaDeEspera().size());
 		assertEquals(20, centro.vacunasDisponibles());
@@ -74,6 +75,7 @@ public class TestCentroVacunacion {
 	public void testGenerarTurnosYRegistrarVacunacion() {
 		int dniAVacunar=29959000;
 		Fecha fecha = new Fecha(30,6,2021);
+		Fecha.setFechaHoy(15,6,2021);
 		assertEquals(20, centro.vacunasDisponibles());
 		assertTrue(centro.listaDeEspera().contains(dniAVacunar));
 		assertFalse(centro.reporteVacunacion().containsKey(dniAVacunar));
@@ -89,7 +91,7 @@ public class TestCentroVacunacion {
 		assertTrue(centro.reporteVacunacion().keySet().contains(dniAVacunar));
 		
 		
-		// Simulo que pasó la fecha del turno y reviso que los turnos no
+		// Simulo que pasï¿½ la fecha del turno y reviso que los turnos no
 		// cumplidos  devuelvan las vacunas al STOCK y no quede gente en
 		// lista de espera.
 		Fecha.setFechaHoy(2, 7, 2021);
@@ -128,12 +130,12 @@ public class TestCentroVacunacion {
 	public void testIngresarVacunasConCantidadInvalida() {
 		try {
 			centro.ingresarVacunas("AstraZeneca", 0, new Fecha(20,3,2021));
-			fail("Permitió ingresar una vacuna con cantidad 0");
+			fail("Permitiï¿½ ingresar una vacuna con cantidad 0");
 		} catch (RuntimeException e) { }
 	
 		try {
 			centro.ingresarVacunas("Moderna", -10, new Fecha(20,3,2021));
-			fail("Permitió ingresar una vacuna con cantidad negativa");
+			fail("Permitiï¿½ ingresar una vacuna con cantidad negativa");
 		} catch (RuntimeException e) { }
 	}
 
