@@ -8,4 +8,4 @@ Para mas informacion leer los archivos Enunciado Primera Parte.pdf y Enunciado S
 
 #### ACLARACIONES
 1) Algunas funciones tienen explicacion dentro del codigo
-2) Descargar el repositorio e iniciar el archivo Principal.java en algun IDE de Java
+2) Descargar el repositorio y ejecutar el archivo Principal.java
